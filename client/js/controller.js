@@ -17,11 +17,16 @@
     });
 
     app.controller('MoviesListController',
-        function($scope, $location, movieList) {
+        function($scope, $location, $window, movieList) {
 
         $scope.movies = movieList.data;
-        $scope.add = function () {
-            $location.path('/movies/new');
+        $scope.add = function (event) {
+            if(event.ctrlKey){
+                var url = $location.absUrl()+'/new';
+                $window.open(url);
+            }else {
+                $location.path('/movies/new');
+            }
         };
         $scope.order=false;
         $scope.orderTitle = function(){
