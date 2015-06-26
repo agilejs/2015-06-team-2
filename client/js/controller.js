@@ -23,6 +23,14 @@
         $scope.add = function () {
             $location.path('/movies/new');
         };
+        $scope.order=false;
+        $scope.orderTitle = function(){
+            if ($scope.order){
+                $scope.order=false;
+            }else{
+                $scope.order=true;
+            }
+        };
     });
 
     app.controller('MoviesAddController',
