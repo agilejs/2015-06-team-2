@@ -11,7 +11,8 @@ angular
                 return MovieService.loadList();
             },
         },
-        templateUrl: '/partial/index.html'
+        templateUrl: '/partial/index.html',
+        activetab: 'home'
     })
     .when('/movies', {
         controller: 'MoviesListController',
@@ -20,7 +21,9 @@ angular
                 return MovieService.loadList();
             },
         },
-        templateUrl: '/partial/movies/list.html'
+
+        templateUrl: '/partial/movies/list.html',
+        activetab: 'movies'
     })
     .when('/movies/new', {
         controller: 'MoviesAddController',

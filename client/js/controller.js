@@ -3,21 +3,30 @@
 
     var app = angular.module('MovieDatabase');
 
-    app.controller('AppController', function($scope) {
+    app.controller('AppController', function($scope,$route) {
         $scope.title = 'The Movie Database';
+        $scope.$route = $route;
     });
 
     app.controller('WelcomeController',
-        function($scope, $location, movieList) {
+        function($scope, $location, $route, movieList) {
 
         $scope.movies = movieList.data;
         $scope.add = function () {
             $location.path('/movies/new');
         };
+        $scope.getClass = function(path) {
+          if ($location.path().substr(0, path.length) == path) {
+            return "active"
+          } else {
+            return ""
+          }
+        };
+
     });
 
     app.controller('MoviesListController',
-        function($scope, $location, movieList) {
+        function($scope, $location, $route, movieList) {
 
         $scope.movies = movieList.data;
         $scope.add = function () {
@@ -31,6 +40,7 @@
                 $scope.order=true;
             }
         };
+  
     });
 
     app.controller('MoviesAddController',
