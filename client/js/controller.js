@@ -19,7 +19,6 @@
     app.controller('MoviesListController',
         function($scope, $location, $window, movieList) {
 
-        $scope.movies = movieList.data;
         $scope.add = function (event) {
             if(event.ctrlKey){
                 var url = $location.absUrl()+'/new';
@@ -28,8 +27,25 @@
                 $location.path('/movies/new');
             }
         };
+
+        $scope.movies = movieList.data;
+        for(var i=0;i<$scope.movies.length;i++){
+            if(!$scope.movies[i].releaseYear){
+                $scope.movies[i].releaseYear='undefined';
+            }
+        }
         $scope.order=false;
+        $scope.column='title';
         $scope.orderTitle = function(){
+            $scope.column='title';
+            if ($scope.order){
+                $scope.order=false;
+            }else{
+                $scope.order=true;
+            }
+        };
+        $scope.orderReleaseYear = function(){
+            $scope.column='releaseYear';
             if ($scope.order){
                 $scope.order=false;
             }else{
