@@ -3,8 +3,9 @@
 
     var app = angular.module('MovieDatabase');
 
-    app.controller('AppController', function($scope) {
+    app.controller('AppController', function($scope, $route) {
         $scope.title = 'The Movie Database';
+        $scope.$route = $route;
     });
 
     app.controller('WelcomeController',
@@ -12,7 +13,16 @@
     });
 
     app.controller('MoviesListController',
-        function($scope, $location, movieList) {
+        function($scope, $location, $window, movieList) {
+
+        $scope.add = function (event) {
+            if(event.ctrlKey){
+                var url = $location.absUrl()+'/new';
+                $window.open(url);
+            }else {
+                $location.path('/movies/new');
+            }
+        };
 
         $scope.movies = movieList.data;
         for(var i=0;i<$scope.movies.length;i++){
@@ -20,9 +30,6 @@
                 $scope.movies[i].releaseYear='undefined';
             }
         }
-        $scope.add = function () {
-            $location.path('/movies/new');
-        };
         $scope.order=false;
         $scope.column='title';
         $scope.orderTitle = function(){
