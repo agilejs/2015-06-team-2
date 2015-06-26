@@ -21,7 +21,6 @@ angular
                 return MovieService.loadList();
             },
         },
-
         templateUrl: '/partial/movies/list.html',
         activetab: 'movies'
     })

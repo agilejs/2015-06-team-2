@@ -3,44 +3,56 @@
 
     var app = angular.module('MovieDatabase');
 
-    app.controller('AppController', function($scope,$route) {
+    app.controller('AppController', function($scope, $route) {
         $scope.title = 'The Movie Database';
         $scope.$route = $route;
     });
 
     app.controller('WelcomeController',
-        function($scope, $location, $route, movieList) {
+        function($scope, $location, movieList) {
 
         $scope.movies = movieList.data;
         $scope.add = function () {
             $location.path('/movies/new');
         };
-        $scope.getClass = function(path) {
-          if ($location.path().substr(0, path.length) == path) {
-            return "active"
-          } else {
-            return ""
-          }
-        };
-
     });
 
     app.controller('MoviesListController',
-        function($scope, $location, $route, movieList) {
+        function($scope, $location, $window, movieList) {
+
+        $scope.add = function (event) {
+            if(event.ctrlKey){
+                var url = $location.absUrl()+'/new';
+                $window.open(url);
+            }else {
+                $location.path('/movies/new');
+            }
+        };
 
         $scope.movies = movieList.data;
-        $scope.add = function () {
-            $location.path('/movies/new');
-        };
+        for(var i=0;i<$scope.movies.length;i++){
+            if(!$scope.movies[i].releaseYear){
+                $scope.movies[i].releaseYear='undefined';
+            }
+        }
         $scope.order=false;
+        $scope.column='title';
         $scope.orderTitle = function(){
+            $scope.column='title';
             if ($scope.order){
                 $scope.order=false;
             }else{
                 $scope.order=true;
             }
         };
-  
+        $scope.orderReleaseYear = function(){
+            $scope.column='releaseYear';
+            if ($scope.order){
+                $scope.order=false;
+            }else{
+                $scope.order=true;
+            }
+        };
     });
 
     app.controller('MoviesAddController',
