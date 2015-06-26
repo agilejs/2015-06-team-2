@@ -1,4 +1,4 @@
-<form class="form-horizontal">
+<form class="form-horizontal" name="form">
   <div class="control-group">
     <label class="control-label" for="inputTitle">Title</label>
     <div class="controls">
@@ -7,8 +7,13 @@
              name="title"
              class="input-block-level"
              autofocus
-             ng-model="movie.title">
+             ng-model="movie.title"
+             ng-required="true"
+             ng-maxlength="100">
+             <span class="error" ng-show="form.title.$error.required">
+                Required!</span>
     </div>
+
   </div>
   <div class="control-group">
     <label class="control-label" for="inputDescription">Description</label>
@@ -28,7 +33,15 @@
                 id="inputReleaseYear"
                 name="releaseyear"
                 class="input-block-level"
-                ng-model="movie.releaseYear">
+                ng-model="movie.releaseYear"
+                required="Field cannot be empty"
+                ng-required="true"
+                ng-maxlength="4"
+                ng-pattern="/[\d{2,4}]/">
+                <span class="error" ng-show="form.releaseyear.$error.required">
+                    Required!</span>
+                <span class="error" ng-show="form.releaseyear.$error.pattern">
+                    Realease year has to be a four digit number!</span>
       </textarea>
     </div>
   </div>
