@@ -5,7 +5,7 @@ angular
 
     $routeProvider
     .when('/', {
-        controller: 'WelcomeController',
+        controller: 'MoviesListController',
         resolve: {
             movieList: function(MovieService) {
                 return MovieService.loadList();
