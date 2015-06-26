@@ -8,6 +8,7 @@
     <thead>
         <tr>
             <th ng-click="orderTitle()">Title</th>
+            <th ng-click="">Release Year</th>
         </tr>
     </thead>
     <tbody>
@@ -16,6 +17,9 @@
                 <a href="#" ng-href="/movies/{{movie.id}}">
                     {{ movie.title }}
                 </a>
+            </td>
+            <td>
+                {{movie.releaseYear}}
             </td>
         </tr>
     </tbody>

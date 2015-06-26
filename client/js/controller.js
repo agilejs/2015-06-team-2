@@ -20,6 +20,11 @@
         function($scope, $location, movieList) {
 
         $scope.movies = movieList.data;
+        for(var i=0;i<$scope.movies.length;i++){
+            if(!$scope.movies[i].releaseYear){
+                $scope.movies[i].releaseYear='undefined';
+            }
+        }
         $scope.add = function () {
             $location.path('/movies/new');
         };
