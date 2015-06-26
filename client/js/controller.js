@@ -3,8 +3,9 @@
 
     var app = angular.module('MovieDatabase');
 
-    app.controller('AppController', function($scope) {
+    app.controller('AppController', function($scope, $route) {
         $scope.title = 'The Movie Database';
+        $scope.$route = $route;
     });
 
     app.controller('WelcomeController',

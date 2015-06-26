@@ -15,10 +15,10 @@
             <div class="container">
                 <a class="brand" href="/">Movie Database</a>
                 <ul class="nav">
-                    <li class="active">
+                    <li ng-class="{active: $route.current.activetab == 'home'}">
                         <a href="/">Home</a>
                     </li>
-                    <li>
+                    <li ng-class="{active: $route.current.activetab == 'movies'}">
                         <a href="/movies">Movies</a>
                     </li>
                     <li>
