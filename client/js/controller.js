@@ -9,11 +9,6 @@
 
     app.controller('WelcomeController',
         function($scope, $location, movieList) {
-
-        $scope.movies = movieList.data;
-        $scope.add = function () {
-            $location.path('/movies/new');
-        };
     });
 
     app.controller('MoviesListController',
