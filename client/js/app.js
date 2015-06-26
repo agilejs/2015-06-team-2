@@ -6,6 +6,11 @@ angular
     $routeProvider
     .when('/', {
         controller: 'WelcomeController',
+        resolve: {
+            movieList: function(MovieService) {
+                return MovieService.loadList();
+            },
+        },
         templateUrl: '/partial/index.html'
     })
     .when('/movies', {

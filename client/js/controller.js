@@ -7,7 +7,13 @@
         $scope.title = 'The Movie Database';
     });
 
-    app.controller('WelcomeController', function() {
+    app.controller('WelcomeController',
+        function($scope, $location, movieList) {
+
+        $scope.movies = movieList.data;
+        $scope.add = function () {
+            $location.path('/movies/new');
+        };
     });
 
     app.controller('MoviesListController',
@@ -60,5 +66,3 @@
     app.controller('NotFoundController', ProblemController);
     app.controller('ErrorController', ProblemController);
 })();
-
-
