@@ -29,7 +29,17 @@
             $location.path('/movies/new');
         };
         $scope.order=false;
+        $scope.column='title';
         $scope.orderTitle = function(){
+            $scope.column='title';
+            if ($scope.order){
+                $scope.order=false;
+            }else{
+                $scope.order=true;
+            }
+        };
+        $scope.orderReleaseYear = function(){
+            $scope.column='releaseYear';
             if ($scope.order){
                 $scope.order=false;
             }else{
